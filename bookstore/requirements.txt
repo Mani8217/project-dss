@@ -1,2 +1,12 @@
-djangorestframework=5.1.7 
-django=3.2
+django==3.2
+mysql=8.0.41
+mysqlclient-2.2.7
+djangorestframework==3.12.4
+scrapy==2.12.0
+selenium==4.29.0
+beautifulsoup4==4.12.3
+sqlparse==0.5.3
+django-cors-headers==3.7.0
+django-jazzmin==2.0.0
+
+

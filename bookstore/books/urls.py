@@ -1,6 +1,11 @@
-from django.urls import path
-from . import views
+# books/urls.py
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import BookViewSet
+
+router = DefaultRouter()
+router.register(r'books', BookViewSet)
 
 urlpatterns = [
-    path('books/', views.book_list, name='book_list'),
+    path('api/', include(router.urls)),  # تنظیم مسیر برای API
 ]
