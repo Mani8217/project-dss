@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+    <h1>Books List</h1>
+    <table id="book-table">
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Availability</th>
+            <th>URL</th>
+        </tr>
+    </table>
+
+    <script>
+        fetch('http://localhost:8000/api/books/')
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById('book-table');
+                data.forEach(book => {
+                    const row = table.insertRow();
+                    row.innerHTML = `
+                        <td>${book.title}</td>
+                        <td>${book.price}</td>
+                        <td>${book.availability}</td>
+                        <td><a href="${book.url}" target="_blank">View</a></td>
+                    `;
+                });
+            });
+    </script>
+</body>
+</html>

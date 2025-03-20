@@ -1,0 +1,2 @@
+djangorestframework=5.1.7 
+django=3.2

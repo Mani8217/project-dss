@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کتاب‌ها</title>
+    <script>
+        // تابعی برای دریافت داده‌ها از API
+        async function fetchBooks() {
+            const response = await fetch('http://127.0.0.1:8000/api/books/');
+            const books = await response.json(); // تبدیل پاسخ به فرمت JSON
+
+            const booksContainer = document.getElementById('books-list');
+            booksContainer.innerHTML = ''; // ابتدا محتوا را پاک می‌کنیم
+
+            // ایجاد تگ‌های HTML برای نمایش داده‌ها
+            books.forEach(book => {
+                const bookElement = document.createElement('div');
+                bookElement.classList.add('book-item');
+                bookElement.innerHTML = `
+                    <h2>${book.title}</h2>
+                    <p><strong>قیمت:</strong> ${book.price}</p>
+                    <p><a href="${book.url}" target="_blank">مشاهده جزئیات</a></p>
+                `;
+                booksContainer.appendChild(bookElement);
+            });
+        }
+
+        // بارگذاری کتاب‌ها هنگام بارگذاری صفحه
+        window.onload = fetchBooks;
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        #books-list {
+            margin-top: 20px;
+        }
+
+        .book-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        h2 {
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>کتاب‌ها</h1>
+    <div id="books-list"></div> <!-- اینجا لیست کتاب‌ها نمایش داده می‌شود -->
+
+</body>
+</html>
